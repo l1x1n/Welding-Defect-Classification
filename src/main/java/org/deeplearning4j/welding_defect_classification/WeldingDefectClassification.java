@@ -40,11 +40,11 @@ public class WeldingDefectClassification {
     private static final Logger log = LoggerFactory.getLogger(WeldingDefectClassification.class);
 
     public static void main(String[] args) throws Exception {
-        int n = 8;
-        int height = 600/n;  // 输入图像高度
+        int n = 10;
+        int height = 400/n;  // 输入图像高度
         int width = 800/n;   // 输入图像宽度
         int channels = 1; // 输入图像通道数
-        int outputNum = 3; // 3分类
+        int outputNum = 6; // 3分类
         int batchSize = 64;
         int nEpochs = 1;
         int seed = 1234;
@@ -68,7 +68,7 @@ public class WeldingDefectClassification {
 
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator(); // parent path as the image label
         ImageRecordReader trainRR = new ImageRecordReader(height, width, channels, labelMaker);
-        ImageTransform cropImageTransform = new CropImageTransform(320, 0, 0, 0);
+        ImageTransform cropImageTransform = new CropImageTransform(420, 0, 0, 0);
         trainRR.initialize(trainSplit, cropImageTransform);
         DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, outputNum);
 
