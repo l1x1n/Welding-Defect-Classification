@@ -54,7 +54,7 @@ public class WeldingDefectClassification {
 // 训练数据的向量化
 
 
-        File data = new File(inputDataDir + "/test");
+        File data = new File(inputDataDir + "/train");
         FileSplit fileSplit = new FileSplit(data);
         //create random path filter using RandomPathFilter
         RandomPathFilter pathFilter = new RandomPathFilter(randNumGen, NativeImageLoader.ALLOWED_FORMATS);
@@ -108,19 +108,19 @@ public class WeldingDefectClassification {
                         .kernelSize(3,3)
                         .stride(1,1)
                         .build())
-                .layer(2,new ConvolutionLayer.Builder()
-                        .name("Conv2")
-                        .nOut(16)
-                        .kernelSize(3,3)
-                        .stride(1,1)
-                        .padding(2,2)
-                        .build())
-                .layer(3,new SubsamplingLayer.Builder()
-                        .name("Pooling2")
-                        .poolingType(PoolingType.MAX)
-                        .kernelSize(3,3)
-                        .stride(1,1)
-                        .build())
+//                .layer(2,new ConvolutionLayer.Builder()
+//                        .name("Conv2")
+//                        .nOut(16)
+//                        .kernelSize(3,3)
+//                        .stride(1,1)
+//                        .padding(2,2)
+//                        .build())
+//                .layer(3,new SubsamplingLayer.Builder()
+//                        .name("Pooling2")
+//                        .poolingType(PoolingType.MAX)
+//                        .kernelSize(3,3)
+//                        .stride(1,1)
+//                        .build())
 //                .layer(4,new ConvolutionLayer.Builder()
 //                        .name("Conv3")
 //                        .nOut(16)
@@ -134,12 +134,12 @@ public class WeldingDefectClassification {
 //                        .kernelSize(3,3)
 //                        .stride(1,1)
 //                        .build())
-                .layer(4,new DenseLayer.Builder()
+                .layer(2,new DenseLayer.Builder()
                         .name("dense1")
                         .nOut(64)
                         .weightInit(WeightInit.XAVIER)
                         .build())
-                .layer(5,new OutputLayer.Builder()
+                .layer(3,new OutputLayer.Builder()
                         .name("output")
                         .nOut(outputNum)
                         .weightInit(WeightInit.XAVIER)

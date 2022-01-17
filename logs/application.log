@@ -21304,3 +21304,2085 @@ Precision, recall & F1: macro-averaged (equally weighted avg. of 3 classes)
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
 
+2022-01-17 23:20:06,867 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:20:06,879 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:20:06,926 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2022-01-17 23:20:08,392 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 6
+
+2022-01-17 23:20:08,393 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2022-01-17 23:20:08,454 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 6
+
+2022-01-17 23:20:08,487 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Windows 10]
+
+2022-01-17 23:20:08,487 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [12]; Memory: [3.5GB];
+
+2022-01-17 23:20:08,487 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2022-01-17 23:20:08,491 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ GCC: "10.3.0"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2022-01-17 23:20:08,526 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+Train model...
+
+2022-01-17 23:20:08,542 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in main
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2022-01-17 23:20:08,741 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+****************************************** UI SERVER *********************************************
+
+
+2022-01-17 23:20:11,438 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server started at: http://localhost:9000
+
+2022-01-17 23:20:11,447 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in main
+                
+StatsStorage instance attached to UI: InMemoryStatsStorage(uid=c44a8e33)
+
+2022-01-17 23:20:12,001 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** MODEL SUMMARY ******************************************
+
+
+2022-01-17 23:20:12,014 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+==============================================================================
+LayerName (LayerType)         nIn,nOut   TotalParams   ParamsShape            
+==============================================================================
+Conv1 (ConvolutionLayer)      1,16       160           b:{1,16}, W:{16,1,3,3} 
+Pooling1 (SubsamplingLayer)   -,-        0             -                      
+Conv2 (ConvolutionLayer)      16,16      2,320         b:{1,16}, W:{16,16,3,3}
+Pooling2 (SubsamplingLayer)   -,-        0             -                      
+dense1 (DenseLayer)           51200,64   3,276,864     W:{51200,64}, b:{1,64} 
+output (OutputLayer)          64,3       195           W:{64,3}, b:{1,3}      
+------------------------------------------------------------------------------
+            Total Parameters:  3,279,539
+        Trainable Parameters:  3,279,539
+           Frozen Parameters:  0
+==============================================================================
+
+
+2022-01-17 23:20:12,014 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING **********************************************
+
+
+2022-01-17 23:20:14,223 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 0 is 1.0964337587356567
+
+2022-01-17 23:20:15,691 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 1 is 1.0717995166778564
+
+2022-01-17 23:20:16,393 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 2 is 1.046465516090393
+
+2022-01-17 23:20:17,102 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 3 is 1.062812089920044
+
+2022-01-17 23:20:17,803 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 4 is 1.0775384902954102
+
+2022-01-17 23:20:18,491 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 5 is 0.9981083273887634
+
+2022-01-17 23:20:19,182 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 6 is 1.004873514175415
+
+2022-01-17 23:20:19,886 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 7 is 1.0035744905471802
+
+2022-01-17 23:20:20,558 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 8 is 0.9861059188842773
+
+2022-01-17 23:20:21,238 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 9 is 0.9577646255493164
+
+2022-01-17 23:20:21,931 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 10 is 0.9448499083518982
+
+2022-01-17 23:20:22,593 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 11 is 0.9180243015289307
+
+2022-01-17 23:20:22,594 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** EVALUATION **********************************************
+
+
+2022-01-17 23:20:28,167 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING EVALUATION ******************************************
+
+
+2022-01-17 23:20:28,174 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    3
+ Accuracy:        0.9035
+ Precision:       0.9273
+ Recall:          0.8971
+ F1 Score:        0.8985
+Precision, recall & F1: macro-averaged (equally weighted avg. of 3 classes)
+
+
+=========================Confusion Matrix=========================
+   0   1   2
+-------------
+ 159  70   1 | 0 = 0
+   0 257   0 | 1 = 1
+   0   0 249 | 2 = 2
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:20:30,668 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TESTING EVALUATION ******************************************
+
+
+2022-01-17 23:20:30,668 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    3
+ Accuracy:        0.8829
+ Precision:       0.9044
+ Recall:          0.8981
+ F1 Score:        0.8846
+Precision, recall & F1: macro-averaged (equally weighted avg. of 3 classes)
+
+
+=========================Confusion Matrix=========================
+   0   1   2
+-------------
+  84  36   1 | 0 = 0
+   0  94   0 | 1 = 1
+   0   0 101 | 2 = 2
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:22:53,140 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in Thread-6
+                
+Deeplearning4j UI server is auto-stopping in shutdown hook.
+
+2022-01-17 23:22:53,160 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server stopped.
+
+2022-01-17 23:23:09,999 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:23:10,050 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:23:10,094 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2022-01-17 23:23:11,419 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 6
+
+2022-01-17 23:23:11,421 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2022-01-17 23:23:11,479 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 6
+
+2022-01-17 23:23:11,512 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Windows 10]
+
+2022-01-17 23:23:11,512 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [12]; Memory: [3.5GB];
+
+2022-01-17 23:23:11,512 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2022-01-17 23:23:11,516 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ GCC: "10.3.0"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2022-01-17 23:23:11,549 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+Train model...
+
+2022-01-17 23:23:11,564 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in main
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2022-01-17 23:23:11,762 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+****************************************** UI SERVER *********************************************
+
+
+2022-01-17 23:23:14,394 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server started at: http://localhost:9000
+
+2022-01-17 23:23:14,401 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in main
+                
+StatsStorage instance attached to UI: InMemoryStatsStorage(uid=92ff93fb)
+
+2022-01-17 23:23:14,931 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** MODEL SUMMARY ******************************************
+
+
+2022-01-17 23:23:14,944 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+==============================================================================
+LayerName (LayerType)         nIn,nOut   TotalParams   ParamsShape            
+==============================================================================
+Conv1 (ConvolutionLayer)      1,16       160           b:{1,16}, W:{16,1,3,3} 
+Pooling1 (SubsamplingLayer)   -,-        0             -                      
+Conv2 (ConvolutionLayer)      16,16      2,320         b:{1,16}, W:{16,16,3,3}
+Pooling2 (SubsamplingLayer)   -,-        0             -                      
+dense1 (DenseLayer)           51200,64   3,276,864     W:{51200,64}, b:{1,64} 
+output (OutputLayer)          64,3       195           W:{64,3}, b:{1,3}      
+------------------------------------------------------------------------------
+            Total Parameters:  3,279,539
+        Trainable Parameters:  3,279,539
+           Frozen Parameters:  0
+==============================================================================
+
+
+2022-01-17 23:23:14,944 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING **********************************************
+
+
+2022-01-17 23:23:17,116 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 0 is 1.0960208177566528
+
+2022-01-17 23:23:18,567 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 1 is 1.091616153717041
+
+2022-01-17 23:23:19,271 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 2 is 1.04232919216156
+
+2022-01-17 23:23:19,963 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 3 is 1.0244147777557373
+
+2022-01-17 23:23:20,664 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 4 is 1.0105810165405273
+
+2022-01-17 23:23:21,359 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 5 is 0.9902677536010742
+
+2022-01-17 23:23:22,046 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 6 is 0.965140163898468
+
+2022-01-17 23:23:22,734 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 7 is 0.9665942788124084
+
+2022-01-17 23:23:23,472 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 8 is 0.9304474592208862
+
+2022-01-17 23:23:24,229 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 9 is 0.9214739799499512
+
+2022-01-17 23:23:24,949 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 10 is 0.8775984644889832
+
+2022-01-17 23:23:26,126 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 11 is 0.8605649471282959
+
+2022-01-17 23:23:26,826 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 12 is 0.8912789225578308
+
+2022-01-17 23:23:27,546 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 13 is 0.8376225233078003
+
+2022-01-17 23:23:28,281 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 14 is 0.8227793574333191
+
+2022-01-17 23:23:28,976 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 15 is 0.7683070302009583
+
+2022-01-17 23:23:29,664 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 16 is 0.7276588082313538
+
+2022-01-17 23:23:30,354 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 17 is 0.7650866508483887
+
+2022-01-17 23:23:31,058 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 18 is 0.7629411816596985
+
+2022-01-17 23:23:31,741 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 19 is 0.740622341632843
+
+2022-01-17 23:23:32,443 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 20 is 0.7585197687149048
+
+2022-01-17 23:23:33,567 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 21 is 0.6911386251449585
+
+2022-01-17 23:23:34,254 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 22 is 0.6982154250144958
+
+2022-01-17 23:23:34,947 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 23 is 0.6872365474700928
+
+2022-01-17 23:23:35,641 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 24 is 0.692187488079071
+
+2022-01-17 23:23:36,333 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 25 is 0.6434118151664734
+
+2022-01-17 23:23:37,052 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 26 is 0.6159677505493164
+
+2022-01-17 23:23:37,745 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 27 is 0.5849583148956299
+
+2022-01-17 23:23:38,444 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 28 is 0.5926035046577454
+
+2022-01-17 23:23:39,142 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 29 is 0.6012486219406128
+
+2022-01-17 23:23:39,845 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 30 is 0.5862879157066345
+
+2022-01-17 23:23:40,958 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 31 is 0.5987071990966797
+
+2022-01-17 23:23:41,660 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 32 is 0.5608299970626831
+
+2022-01-17 23:23:42,354 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 33 is 0.519122302532196
+
+2022-01-17 23:23:43,061 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 34 is 0.5569605827331543
+
+2022-01-17 23:23:43,747 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 35 is 0.49208396673202515
+
+2022-01-17 23:23:44,475 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 36 is 0.5373880863189697
+
+2022-01-17 23:23:45,177 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 37 is 0.4738418757915497
+
+2022-01-17 23:23:45,860 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 38 is 0.5203900337219238
+
+2022-01-17 23:23:46,556 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 39 is 0.5207182168960571
+
+2022-01-17 23:23:47,243 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 40 is 0.5040209889411926
+
+2022-01-17 23:23:48,356 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 41 is 0.46708545088768005
+
+2022-01-17 23:23:49,052 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 42 is 0.4153476655483246
+
+2022-01-17 23:23:49,755 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 43 is 0.4336395859718323
+
+2022-01-17 23:23:50,451 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 44 is 0.4277890622615814
+
+2022-01-17 23:23:51,156 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 45 is 0.4063856899738312
+
+2022-01-17 23:23:51,871 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 46 is 0.36422309279441833
+
+2022-01-17 23:23:52,617 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 47 is 0.3629172742366791
+
+2022-01-17 23:23:53,354 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 48 is 0.3906859755516052
+
+2022-01-17 23:23:54,068 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 49 is 0.43541419506073
+
+2022-01-17 23:23:54,776 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 50 is 0.3985564410686493
+
+2022-01-17 23:23:55,930 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 51 is 0.35055217146873474
+
+2022-01-17 23:23:56,651 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 52 is 0.3446771204471588
+
+2022-01-17 23:23:57,365 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 53 is 0.42077693343162537
+
+2022-01-17 23:23:58,078 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 54 is 0.35934504866600037
+
+2022-01-17 23:23:58,772 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 55 is 0.3853883445262909
+
+2022-01-17 23:23:59,474 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 56 is 0.32720112800598145
+
+2022-01-17 23:24:00,229 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 57 is 0.31878048181533813
+
+2022-01-17 23:24:00,931 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 58 is 0.2879638075828552
+
+2022-01-17 23:24:01,633 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 59 is 0.3374059796333313
+
+2022-01-17 23:24:02,333 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 60 is 0.35527363419532776
+
+2022-01-17 23:24:03,444 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 61 is 0.3102976679801941
+
+2022-01-17 23:24:04,139 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 62 is 0.321336567401886
+
+2022-01-17 23:24:04,844 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 63 is 0.3443247973918915
+
+2022-01-17 23:24:05,537 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 64 is 0.2756483554840088
+
+2022-01-17 23:24:06,226 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 65 is 0.2984548807144165
+
+2022-01-17 23:24:06,917 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 66 is 0.2601652145385742
+
+2022-01-17 23:24:07,614 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 67 is 0.32221296429634094
+
+2022-01-17 23:24:08,313 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 68 is 0.23097531497478485
+
+2022-01-17 23:24:09,015 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 69 is 0.23472613096237183
+
+2022-01-17 23:24:09,720 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 70 is 0.2760522663593292
+
+2022-01-17 23:24:10,825 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 71 is 0.28731226921081543
+
+2022-01-17 23:24:11,520 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 72 is 0.27769309282302856
+
+2022-01-17 23:24:12,214 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 73 is 0.2636249363422394
+
+2022-01-17 23:24:12,918 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 74 is 0.29563871026039124
+
+2022-01-17 23:24:13,598 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 75 is 0.1755232959985733
+
+2022-01-17 23:24:14,322 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 76 is 0.19262799620628357
+
+2022-01-17 23:24:15,020 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 77 is 0.25297120213508606
+
+2022-01-17 23:24:15,715 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 78 is 0.20305390655994415
+
+2022-01-17 23:24:16,390 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 79 is 0.20328836143016815
+
+2022-01-17 23:24:17,044 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 80 is 0.2393372356891632
+
+2022-01-17 23:24:18,137 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 81 is 0.23258638381958008
+
+2022-01-17 23:24:18,394 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 82 is 0.2764146694770226
+
+2022-01-17 23:24:18,394 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** EVALUATION **********************************************
+
+
+2022-01-17 23:24:56,755 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING EVALUATION ******************************************
+
+
+2022-01-17 23:24:56,761 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    3
+ Accuracy:        0.9746
+ Precision:       0.9745
+ Recall:          0.9747
+ F1 Score:        0.9746
+Precision, recall & F1: macro-averaged (equally weighted avg. of 3 classes)
+
+
+=========================Confusion Matrix=========================
+    0    1    2
+----------------
+ 1682   45    0 | 0 = 0
+   57 1703   23 | 1 = 1
+    0    9 1755 | 2 = 2
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:25:04,502 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TESTING EVALUATION ******************************************
+
+
+2022-01-17 23:25:04,502 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    3
+ Accuracy:        0.3612
+ Precision:       0.2304
+ Recall:          0.3609
+ F1 Score:        0.2803
+Precision, recall & F1: macro-averaged (equally weighted avg. of 3 classes)
+
+
+=========================Confusion Matrix=========================
+   0   1   2
+-------------
+  29 220 102 | 0 = 0
+   0 351   0 | 1 = 1
+ 350   0   0 | 2 = 2
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:27:46,207 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in Thread-6
+                
+Deeplearning4j UI server is auto-stopping in shutdown hook.
+
+2022-01-17 23:27:46,239 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server stopped.
+
+2022-01-17 23:28:00,877 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:28:00,927 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:28:00,970 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2022-01-17 23:28:02,300 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 6
+
+2022-01-17 23:28:02,302 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2022-01-17 23:28:02,362 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 6
+
+2022-01-17 23:28:02,394 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Windows 10]
+
+2022-01-17 23:28:02,394 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [12]; Memory: [3.5GB];
+
+2022-01-17 23:28:02,394 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2022-01-17 23:28:02,398 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ GCC: "10.3.0"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2022-01-17 23:28:02,436 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+Train model...
+
+2022-01-17 23:28:02,451 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in main
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2022-01-17 23:28:02,639 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+****************************************** UI SERVER *********************************************
+
+
+2022-01-17 23:28:05,214 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server started at: http://localhost:9000
+
+2022-01-17 23:28:05,221 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in main
+                
+StatsStorage instance attached to UI: InMemoryStatsStorage(uid=c58d3a2b)
+
+2022-01-17 23:28:05,744 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** MODEL SUMMARY ******************************************
+
+
+2022-01-17 23:28:05,757 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+=============================================================================
+LayerName (LayerType)         nIn,nOut   TotalParams   ParamsShape           
+=============================================================================
+Conv1 (ConvolutionLayer)      1,16       160           b:{1,16}, W:{16,1,3,3}
+Pooling1 (SubsamplingLayer)   -,-        0             -                     
+dense1 (DenseLayer)           51200,64   3,276,864     W:{51200,64}, b:{1,64}
+output (OutputLayer)          64,3       195           W:{64,3}, b:{1,3}     
+-----------------------------------------------------------------------------
+            Total Parameters:  3,277,219
+        Trainable Parameters:  3,277,219
+           Frozen Parameters:  0
+=============================================================================
+
+
+2022-01-17 23:28:05,757 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING **********************************************
+
+
+2022-01-17 23:28:07,087 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 0 is 1.094915747642517
+
+2022-01-17 23:28:07,714 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 1 is 1.0866674184799194
+
+2022-01-17 23:28:07,826 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 2 is 1.0381147861480713
+
+2022-01-17 23:28:08,037 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 3 is 1.0206252336502075
+
+2022-01-17 23:28:08,462 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 4 is 1.0077471733093262
+
+2022-01-17 23:28:08,880 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 5 is 0.9854898452758789
+
+2022-01-17 23:28:09,295 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 6 is 0.9557321071624756
+
+2022-01-17 23:28:09,708 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 7 is 0.9629866480827332
+
+2022-01-17 23:28:10,125 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 8 is 0.9244913458824158
+
+2022-01-17 23:28:10,550 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 9 is 0.9201722741127014
+
+2022-01-17 23:28:10,961 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 10 is 0.8807922601699829
+
+2022-01-17 23:28:11,577 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 11 is 0.8656342029571533
+
+2022-01-17 23:28:11,806 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 12 is 0.8846015930175781
+
+2022-01-17 23:28:12,234 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 13 is 0.8476217985153198
+
+2022-01-17 23:28:12,653 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 14 is 0.8343451619148254
+
+2022-01-17 23:28:13,075 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 15 is 0.7978711128234863
+
+2022-01-17 23:28:13,492 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 16 is 0.7478311061859131
+
+2022-01-17 23:28:13,898 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 17 is 0.7778859734535217
+
+2022-01-17 23:28:14,327 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 18 is 0.7829988598823547
+
+2022-01-17 23:28:14,737 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 19 is 0.7558777928352356
+
+2022-01-17 23:28:15,155 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 20 is 0.7774584889411926
+
+2022-01-17 23:28:15,796 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 21 is 0.7260707020759583
+
+2022-01-17 23:28:16,021 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 22 is 0.7356865406036377
+
+2022-01-17 23:28:16,430 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 23 is 0.7239207625389099
+
+2022-01-17 23:28:16,845 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 24 is 0.732435405254364
+
+2022-01-17 23:28:17,260 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 25 is 0.681825578212738
+
+2022-01-17 23:28:17,673 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 26 is 0.6609241366386414
+
+2022-01-17 23:28:18,088 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 27 is 0.6325230002403259
+
+2022-01-17 23:28:18,504 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 28 is 0.6484232544898987
+
+2022-01-17 23:28:18,923 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 29 is 0.650669515132904
+
+2022-01-17 23:28:19,331 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 30 is 0.6291952729225159
+
+2022-01-17 23:28:19,966 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 31 is 0.6563012003898621
+
+2022-01-17 23:28:20,236 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 32 is 0.6189321875572205
+
+2022-01-17 23:28:20,644 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 33 is 0.5896908640861511
+
+2022-01-17 23:28:21,062 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 34 is 0.6251896619796753
+
+2022-01-17 23:28:21,475 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 35 is 0.5624299049377441
+
+2022-01-17 23:28:21,875 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 36 is 0.5976302623748779
+
+2022-01-17 23:28:22,297 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 37 is 0.550685703754425
+
+2022-01-17 23:28:22,718 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 38 is 0.594572901725769
+
+2022-01-17 23:28:23,147 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 39 is 0.6231573224067688
+
+2022-01-17 23:28:23,549 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 40 is 0.5737514495849609
+
+2022-01-17 23:28:24,178 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 41 is 0.561164140701294
+
+2022-01-17 23:28:24,433 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 42 is 0.5141683220863342
+
+2022-01-17 23:28:24,839 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 43 is 0.5298556089401245
+
+2022-01-17 23:28:25,259 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 44 is 0.5277659296989441
+
+2022-01-17 23:28:25,672 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 45 is 0.5143116116523743
+
+2022-01-17 23:28:26,090 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 46 is 0.4747787415981293
+
+2022-01-17 23:28:26,502 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 47 is 0.47894203662872314
+
+2022-01-17 23:28:26,908 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 48 is 0.4952179491519928
+
+2022-01-17 23:28:27,324 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 49 is 0.5304358005523682
+
+2022-01-17 23:28:27,736 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 50 is 0.4963659644126892
+
+2022-01-17 23:28:28,349 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 51 is 0.4606867730617523
+
+2022-01-17 23:28:28,621 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 52 is 0.4602157771587372
+
+2022-01-17 23:28:29,050 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 53 is 0.5182918906211853
+
+2022-01-17 23:28:29,469 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 54 is 0.4825327694416046
+
+2022-01-17 23:28:29,872 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 55 is 0.4804054796695709
+
+2022-01-17 23:28:30,286 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 56 is 0.4329584538936615
+
+2022-01-17 23:28:30,701 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 57 is 0.43145033717155457
+
+2022-01-17 23:28:31,116 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 58 is 0.4104441702365875
+
+2022-01-17 23:28:31,530 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 59 is 0.44564419984817505
+
+2022-01-17 23:28:31,937 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 60 is 0.4566667079925537
+
+2022-01-17 23:28:32,576 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 61 is 0.409272164106369
+
+2022-01-17 23:28:32,805 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 62 is 0.43879610300064087
+
+2022-01-17 23:28:33,226 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 63 is 0.45014432072639465
+
+2022-01-17 23:28:33,642 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 64 is 0.39317652583122253
+
+2022-01-17 23:28:34,056 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 65 is 0.3901274800300598
+
+2022-01-17 23:28:34,459 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 66 is 0.3880402445793152
+
+2022-01-17 23:28:34,866 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 67 is 0.4383942484855652
+
+2022-01-17 23:28:35,288 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 68 is 0.35855570435523987
+
+2022-01-17 23:28:35,697 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 69 is 0.344787061214447
+
+2022-01-17 23:28:36,113 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 70 is 0.40790143609046936
+
+2022-01-17 23:28:36,731 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 71 is 0.4178740084171295
+
+2022-01-17 23:28:36,980 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 72 is 0.39413103461265564
+
+2022-01-17 23:28:37,383 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 73 is 0.38473087549209595
+
+2022-01-17 23:28:37,810 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 74 is 0.4122564196586609
+
+2022-01-17 23:28:38,221 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 75 is 0.29804447293281555
+
+2022-01-17 23:28:38,625 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 76 is 0.2984880208969116
+
+2022-01-17 23:28:39,049 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 77 is 0.3654695451259613
+
+2022-01-17 23:28:39,451 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 78 is 0.32216888666152954
+
+2022-01-17 23:28:39,863 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 79 is 0.32721444964408875
+
+2022-01-17 23:28:40,286 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 80 is 0.3395272195339203
+
+2022-01-17 23:28:40,917 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 81 is 0.3567144274711609
+
+2022-01-17 23:28:40,968 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 82 is 0.4029355782728929
+
+2022-01-17 23:28:40,969 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** EVALUATION **********************************************
+
+
+2022-01-17 23:29:13,718 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING EVALUATION ******************************************
+
+
+2022-01-17 23:29:13,723 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    3
+ Accuracy:        0.9657
+ Precision:       0.9656
+ Recall:          0.9658
+ F1 Score:        0.9656
+Precision, recall & F1: macro-averaged (equally weighted avg. of 3 classes)
+
+
+=========================Confusion Matrix=========================
+    0    1    2
+----------------
+ 1664   63    0 | 0 = 0
+   91 1677   15 | 1 = 1
+    0   12 1752 | 2 = 2
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:29:20,517 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TESTING EVALUATION ******************************************
+
+
+2022-01-17 23:29:20,517 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    3
+ Accuracy:        0.3365
+ Precision:       0.1812
+ Recall:          0.3362
+ F1 Score:        0.2352
+Precision, recall & F1: macro-averaged (equally weighted avg. of 3 classes)
+
+
+=========================Confusion Matrix=========================
+   0   1   2
+-------------
+   3 305  43 | 0 = 0
+   0 351   0 | 1 = 1
+ 350   0   0 | 2 = 2
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:34:15,085 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in Thread-6
+                
+Deeplearning4j UI server is auto-stopping in shutdown hook.
+
+2022-01-17 23:34:15,101 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server stopped.
+
+2022-01-17 23:34:29,207 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:34:29,216 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:34:29,255 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2022-01-17 23:34:30,618 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 6
+
+2022-01-17 23:34:30,619 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2022-01-17 23:34:30,679 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 6
+
+2022-01-17 23:34:30,711 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Windows 10]
+
+2022-01-17 23:34:30,711 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [12]; Memory: [3.5GB];
+
+2022-01-17 23:34:30,711 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2022-01-17 23:34:30,715 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ GCC: "10.3.0"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2022-01-17 23:34:30,749 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+Train model...
+
+2022-01-17 23:34:30,763 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in main
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2022-01-17 23:34:30,947 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+****************************************** UI SERVER *********************************************
+
+
+2022-01-17 23:34:33,501 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server started at: http://localhost:9000
+
+2022-01-17 23:34:33,508 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in main
+                
+StatsStorage instance attached to UI: InMemoryStatsStorage(uid=70eaf57e)
+
+2022-01-17 23:34:34,022 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** MODEL SUMMARY ******************************************
+
+
+2022-01-17 23:34:34,036 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+=============================================================================
+LayerName (LayerType)         nIn,nOut   TotalParams   ParamsShape           
+=============================================================================
+Conv1 (ConvolutionLayer)      1,16       160           b:{1,16}, W:{16,1,3,3}
+Pooling1 (SubsamplingLayer)   -,-        0             -                     
+dense1 (DenseLayer)           51200,64   3,276,864     W:{51200,64}, b:{1,64}
+output (OutputLayer)          64,6       390           W:{64,6}, b:{1,6}     
+-----------------------------------------------------------------------------
+            Total Parameters:  3,277,414
+        Trainable Parameters:  3,277,414
+           Frozen Parameters:  0
+=============================================================================
+
+
+2022-01-17 23:34:34,036 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING **********************************************
+
+
+2022-01-17 23:35:54,679 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in Thread-6
+                
+Deeplearning4j UI server is auto-stopping in shutdown hook.
+
+2022-01-17 23:35:54,697 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server stopped.
+
+2022-01-17 23:36:08,466 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:36:08,479 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 3 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:36:08,521 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2022-01-17 23:36:09,880 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 6
+
+2022-01-17 23:36:09,881 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2022-01-17 23:36:09,942 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 6
+
+2022-01-17 23:36:09,976 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Windows 10]
+
+2022-01-17 23:36:09,977 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [12]; Memory: [3.5GB];
+
+2022-01-17 23:36:09,977 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2022-01-17 23:36:09,980 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ GCC: "10.3.0"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2022-01-17 23:36:10,016 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+Train model...
+
+2022-01-17 23:36:10,030 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in main
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2022-01-17 23:36:10,229 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+****************************************** UI SERVER *********************************************
+
+
+2022-01-17 23:36:12,936 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server started at: http://localhost:9000
+
+2022-01-17 23:36:12,946 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in main
+                
+StatsStorage instance attached to UI: InMemoryStatsStorage(uid=1c746881)
+
+2022-01-17 23:36:13,480 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** MODEL SUMMARY ******************************************
+
+
+2022-01-17 23:36:13,492 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+=============================================================================
+LayerName (LayerType)         nIn,nOut   TotalParams   ParamsShape           
+=============================================================================
+Conv1 (ConvolutionLayer)      1,16       160           b:{1,16}, W:{16,1,3,3}
+Pooling1 (SubsamplingLayer)   -,-        0             -                     
+dense1 (DenseLayer)           51200,64   3,276,864     W:{51200,64}, b:{1,64}
+output (OutputLayer)          64,6       390           W:{64,6}, b:{1,6}     
+-----------------------------------------------------------------------------
+            Total Parameters:  3,277,414
+        Trainable Parameters:  3,277,414
+           Frozen Parameters:  0
+=============================================================================
+
+
+2022-01-17 23:36:13,492 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING **********************************************
+
+
+2022-01-17 23:36:16,867 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in Thread-6
+                
+Deeplearning4j UI server is auto-stopping in shutdown hook.
+
+2022-01-17 23:36:16,882 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server stopped.
+
+2022-01-17 23:36:32,039 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 6 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:36:32,059 - [INFO] - from org.datavec.image.recordreader.BaseImageRecordReader in main
+                
+ImageRecordReader: 6 label classes inferred using label generator ParentPathLabelGenerator
+
+2022-01-17 23:36:32,102 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2022-01-17 23:36:33,441 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 6
+
+2022-01-17 23:36:33,442 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2022-01-17 23:36:33,500 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 6
+
+2022-01-17 23:36:33,534 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Windows 10]
+
+2022-01-17 23:36:33,535 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [12]; Memory: [3.5GB];
+
+2022-01-17 23:36:33,535 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2022-01-17 23:36:33,538 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ GCC: "10.3.0"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2022-01-17 23:36:33,572 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+Train model...
+
+2022-01-17 23:36:33,586 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in main
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2022-01-17 23:36:33,769 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+****************************************** UI SERVER *********************************************
+
+
+2022-01-17 23:36:36,350 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server started at: http://localhost:9000
+
+2022-01-17 23:36:36,357 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in main
+                
+StatsStorage instance attached to UI: InMemoryStatsStorage(uid=7e8d25da)
+
+2022-01-17 23:36:36,871 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** MODEL SUMMARY ******************************************
+
+
+2022-01-17 23:36:36,883 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+=============================================================================
+LayerName (LayerType)         nIn,nOut   TotalParams   ParamsShape           
+=============================================================================
+Conv1 (ConvolutionLayer)      1,16       160           b:{1,16}, W:{16,1,3,3}
+Pooling1 (SubsamplingLayer)   -,-        0             -                     
+dense1 (DenseLayer)           51200,64   3,276,864     W:{51200,64}, b:{1,64}
+output (OutputLayer)          64,6       390           W:{64,6}, b:{1,6}     
+-----------------------------------------------------------------------------
+            Total Parameters:  3,277,414
+        Trainable Parameters:  3,277,414
+           Frozen Parameters:  0
+=============================================================================
+
+
+2022-01-17 23:36:36,883 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING **********************************************
+
+
+2022-01-17 23:36:38,240 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 0 is 1.779335618019104
+
+2022-01-17 23:36:38,884 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 1 is 1.8066630363464355
+
+2022-01-17 23:36:38,995 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 2 is 1.7690670490264893
+
+2022-01-17 23:36:39,268 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 3 is 1.7989517450332642
+
+2022-01-17 23:36:39,713 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 4 is 1.748548984527588
+
+2022-01-17 23:36:40,145 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 5 is 1.7641448974609375
+
+2022-01-17 23:36:40,573 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 6 is 1.7536588907241821
+
+2022-01-17 23:36:41,003 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 7 is 1.7544620037078857
+
+2022-01-17 23:36:41,428 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 8 is 1.717187762260437
+
+2022-01-17 23:36:41,847 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 9 is 1.7216988801956177
+
+2022-01-17 23:36:42,282 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 10 is 1.6947849988937378
+
+2022-01-17 23:36:42,918 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 11 is 1.7104748487472534
+
+2022-01-17 23:36:43,202 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 12 is 1.699552297592163
+
+2022-01-17 23:36:43,643 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 13 is 1.6817853450775146
+
+2022-01-17 23:36:44,081 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 14 is 1.7093415260314941
+
+2022-01-17 23:36:44,537 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 15 is 1.6646355390548706
+
+2022-01-17 23:36:44,988 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 16 is 1.6357965469360352
+
+2022-01-17 23:36:45,437 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 17 is 1.6505327224731445
+
+2022-01-17 23:36:45,860 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 18 is 1.6585215330123901
+
+2022-01-17 23:36:46,298 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 19 is 1.6438952684402466
+
+2022-01-17 23:36:46,729 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 20 is 1.650629997253418
+
+2022-01-17 23:36:47,386 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 21 is 1.6237869262695312
+
+2022-01-17 23:36:47,622 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 22 is 1.5988342761993408
+
+2022-01-17 23:36:48,059 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 23 is 1.6020269393920898
+
+2022-01-17 23:36:48,496 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 24 is 1.5955002307891846
+
+2022-01-17 23:36:48,934 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 25 is 1.5792232751846313
+
+2022-01-17 23:36:49,369 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 26 is 1.6023699045181274
+
+2022-01-17 23:36:49,808 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 27 is 1.5627233982086182
+
+2022-01-17 23:36:50,240 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 28 is 1.5597275495529175
+
+2022-01-17 23:36:50,688 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 29 is 1.5897759199142456
+
+2022-01-17 23:36:51,123 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 30 is 1.5620341300964355
+
+2022-01-17 23:36:51,793 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 31 is 1.5390946865081787
+
+2022-01-17 23:36:52,065 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 32 is 1.5006481409072876
+
+2022-01-17 23:36:52,502 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 33 is 1.5275942087173462
+
+2022-01-17 23:36:52,936 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 34 is 1.5648503303527832
+
+2022-01-17 23:36:53,386 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 35 is 1.522337555885315
+
+2022-01-17 23:36:53,822 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 36 is 1.513994812965393
+
+2022-01-17 23:36:54,282 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 37 is 1.5552968978881836
+
+2022-01-17 23:36:54,711 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 38 is 1.4778642654418945
+
+2022-01-17 23:36:55,156 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 39 is 1.4938066005706787
+
+2022-01-17 23:36:55,596 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 40 is 1.4218158721923828
+
+2022-01-17 23:36:56,244 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 41 is 1.4766318798065186
+
+2022-01-17 23:36:56,520 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 42 is 1.492787480354309
+
+2022-01-17 23:36:56,946 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 43 is 1.4905693531036377
+
+2022-01-17 23:36:57,381 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 44 is 1.4026603698730469
+
+2022-01-17 23:36:57,826 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 45 is 1.4551811218261719
+
+2022-01-17 23:36:58,269 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 46 is 1.4503153562545776
+
+2022-01-17 23:36:58,696 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 47 is 1.4683692455291748
+
+2022-01-17 23:36:59,133 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 48 is 1.4393947124481201
+
+2022-01-17 23:36:59,562 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 49 is 1.4462406635284424
+
+2022-01-17 23:36:59,990 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 50 is 1.4576125144958496
+
+2022-01-17 23:37:00,645 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 51 is 1.3719000816345215
+
+2022-01-17 23:37:00,928 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 52 is 1.384067177772522
+
+2022-01-17 23:37:01,374 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 53 is 1.3789223432540894
+
+2022-01-17 23:37:01,813 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 54 is 1.4263654947280884
+
+2022-01-17 23:37:02,252 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 55 is 1.3881393671035767
+
+2022-01-17 23:37:02,686 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 56 is 1.3903677463531494
+
+2022-01-17 23:37:03,131 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 57 is 1.4549506902694702
+
+2022-01-17 23:37:03,589 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 58 is 1.3529138565063477
+
+2022-01-17 23:37:04,038 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 59 is 1.3506643772125244
+
+2022-01-17 23:37:04,469 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 60 is 1.3713613748550415
+
+2022-01-17 23:37:05,112 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 61 is 1.4109559059143066
+
+2022-01-17 23:37:05,384 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 62 is 1.3598512411117554
+
+2022-01-17 23:37:05,823 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 63 is 1.3486591577529907
+
+2022-01-17 23:37:06,256 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 64 is 1.3551673889160156
+
+2022-01-17 23:37:06,687 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 65 is 1.3894238471984863
+
+2022-01-17 23:37:07,136 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 66 is 1.3089252710342407
+
+2022-01-17 23:37:07,568 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 67 is 1.3497604131698608
+
+2022-01-17 23:37:08,013 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 68 is 1.3511568307876587
+
+2022-01-17 23:37:08,446 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 69 is 1.3480113744735718
+
+2022-01-17 23:37:08,883 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 70 is 1.2802094221115112
+
+2022-01-17 23:37:09,528 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 71 is 1.3308959007263184
+
+2022-01-17 23:37:09,776 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 72 is 1.27479887008667
+
+2022-01-17 23:37:10,210 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 73 is 1.389038324356079
+
+2022-01-17 23:37:10,659 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 74 is 1.2914382219314575
+
+2022-01-17 23:37:11,096 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 75 is 1.3146557807922363
+
+2022-01-17 23:37:11,525 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 76 is 1.290239930152893
+
+2022-01-17 23:37:11,973 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 77 is 1.284761667251587
+
+2022-01-17 23:37:12,420 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 78 is 1.213546872138977
+
+2022-01-17 23:37:12,880 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 79 is 1.2433563470840454
+
+2022-01-17 23:37:13,323 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 80 is 1.2546672821044922
+
+2022-01-17 23:37:13,959 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 81 is 1.3209149837493896
+
+2022-01-17 23:37:14,205 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 82 is 1.2467609643936157
+
+2022-01-17 23:37:14,644 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 83 is 1.2727947235107422
+
+2022-01-17 23:37:15,099 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 84 is 1.1437523365020752
+
+2022-01-17 23:37:15,534 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 85 is 1.2650076150894165
+
+2022-01-17 23:37:15,969 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 86 is 1.2128335237503052
+
+2022-01-17 23:37:16,396 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 87 is 1.1957770586013794
+
+2022-01-17 23:37:16,828 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 88 is 1.1462980508804321
+
+2022-01-17 23:37:17,270 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 89 is 1.197259545326233
+
+2022-01-17 23:37:17,707 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 90 is 1.137012243270874
+
+2022-01-17 23:37:18,352 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 91 is 1.1959350109100342
+
+2022-01-17 23:37:18,621 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 92 is 1.2161513566970825
+
+2022-01-17 23:37:19,053 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 93 is 1.2035315036773682
+
+2022-01-17 23:37:19,481 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 94 is 1.2279542684555054
+
+2022-01-17 23:37:19,937 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 95 is 1.1467523574829102
+
+2022-01-17 23:37:20,367 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 96 is 1.0979005098342896
+
+2022-01-17 23:37:20,794 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 97 is 1.1144834756851196
+
+2022-01-17 23:37:21,230 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 98 is 1.1176347732543945
+
+2022-01-17 23:37:21,681 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 99 is 1.1614528894424438
+
+2022-01-17 23:37:22,156 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 100 is 1.132865071296692
+
+2022-01-17 23:37:22,788 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 101 is 1.1110278367996216
+
+2022-01-17 23:37:23,050 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 102 is 1.157228946685791
+
+2022-01-17 23:37:23,483 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 103 is 1.0293647050857544
+
+2022-01-17 23:37:23,924 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 104 is 1.1135324239730835
+
+2022-01-17 23:37:24,344 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 105 is 1.1065528392791748
+
+2022-01-17 23:37:24,779 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 106 is 1.1264454126358032
+
+2022-01-17 23:37:25,211 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 107 is 1.1605243682861328
+
+2022-01-17 23:37:25,647 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 108 is 1.1287413835525513
+
+2022-01-17 23:37:26,078 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 109 is 1.0874019861221313
+
+2022-01-17 23:37:26,508 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 110 is 1.1122283935546875
+
+2022-01-17 23:37:27,151 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 111 is 1.0948452949523926
+
+2022-01-17 23:37:27,424 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 112 is 1.0414981842041016
+
+2022-01-17 23:37:27,840 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 113 is 1.03756844997406
+
+2022-01-17 23:37:28,298 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 114 is 1.053696870803833
+
+2022-01-17 23:37:28,728 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 115 is 0.9739557504653931
+
+2022-01-17 23:37:29,169 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 116 is 1.00053071975708
+
+2022-01-17 23:37:29,616 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 117 is 1.044002890586853
+
+2022-01-17 23:37:30,051 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 118 is 0.9789987802505493
+
+2022-01-17 23:37:30,221 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in main
+                
+Score at iteration 119 is 1.1245338439941406
+
+2022-01-17 23:37:30,221 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** EVALUATION **********************************************
+
+
+2022-01-17 23:38:18,888 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TRAINING EVALUATION ******************************************
+
+
+2022-01-17 23:38:18,894 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    6
+ Accuracy:        0.8395
+ Precision:       0.8702
+ Recall:          0.8336
+ F1 Score:        0.8277
+Precision, recall & F1: macro-averaged (equally weighted avg. of 6 classes)
+
+
+=========================Confusion Matrix=========================
+    0    1    2    3    4    5
+-------------------------------
+  532    0    0    0  398  292 | 0 = 0
+   10 1061    4  133   65    0 | 1 = 1
+    0    0 1133   65    0    0 | 2 = 2
+    0    0   11 1514    0    0 | 3 = 3
+    0    0    0    0 1033  165 | 4 = 4
+    0    0    0    5   79 1146 | 5 = 5
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:38:40,459 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+*************************************** TESTING EVALUATION ******************************************
+
+
+2022-01-17 23:38:40,460 - [INFO] - from org.deeplearning4j.welding_defect_classification.WeldingDefectClassification in main
+                
+
+
+========================Evaluation Metrics========================
+ # of classes:    6
+ Accuracy:        0.8544
+ Precision:       0.8824
+ Recall:          0.8460
+ F1 Score:        0.8419
+Precision, recall & F1: macro-averaged (equally weighted avg. of 6 classes)
+
+
+=========================Confusion Matrix=========================
+   0   1   2   3   4   5
+-------------------------
+ 226   0   0   0 174 105 | 0 = 0
+   1 440   2  50  16   1 | 1 = 1
+   0   0 549  17   0   0 | 2 = 2
+   1   0   4 621   0   0 | 3 = 3
+   0   0   0   0 472  76 | 4 = 4
+   0   0   0   2  28 492 | 5 = 5
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+
+2022-01-17 23:39:05,136 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in Thread-6
+                
+Deeplearning4j UI server is auto-stopping in shutdown hook.
+
+2022-01-17 23:39:05,152 - [INFO] - from org.deeplearning4j.ui.VertxUIServer in vert.x-eventloop-thread-0
+                
+Deeplearning4j UI server stopped.
+
