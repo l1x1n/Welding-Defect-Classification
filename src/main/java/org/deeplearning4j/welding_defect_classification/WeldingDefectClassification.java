@@ -194,7 +194,7 @@ public class WeldingDefectClassification {
 
 
         Evaluation validEva = net.evaluate(validIter);
-        log.info("\n*************************************** TESTING EVALUATION ******************************************\n");
+        log.info("\n*************************************** VALIDATION EVALUATION ******************************************\n");
         log.info(validEva.stats());
 
     }
