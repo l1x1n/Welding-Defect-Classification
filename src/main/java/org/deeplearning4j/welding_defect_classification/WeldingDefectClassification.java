@@ -60,20 +60,24 @@ public class WeldingDefectClassification {
         int channels = 1; // channel
         int outputNum = 6; // 6 classes
         int batchSize = 64;
-        int nEpochs = 5;
+        int nEpochs = 6;
         int seed = 1234;
         Random randNumGen = new Random(seed);
         String inputDataDir = "D:/al5083";
 
 //Training data Vectorization
-        File dataTrain = new File(inputDataDir + "/train");
-        FileSplit fileSplitTrain = new FileSplit(dataTrain);
+//        File dataTrain = new File(inputDataDir + "/train");
+//        FileSplit fileSplitTrain = new FileSplit(dataTrain);
         //create random path filter using RandomPathFilter
-        RandomPathFilter pathFilter1 = new RandomPathFilter(randNumGen, NativeImageLoader.ALLOWED_FORMATS);
-        InputSplit[] filesInDirSplit1 = fileSplitTrain.sample(pathFilter1, 60,20,20);//40
-        InputSplit trainSplit = filesInDirSplit1[0];
-        InputSplit testSplit = filesInDirSplit1[1];
-        InputSplit validSplit = filesInDirSplit1[2];
+//        RandomPathFilter pathFilter1 = new RandomPathFilter(randNumGen, NativeImageLoader.ALLOWED_FORMATS);
+//        InputSplit[] filesInDirSplit1 = fileSplitTrain.sample(pathFilter1, 60,20,20);//40
+//        InputSplit trainSplit = filesInDirSplit1[0];
+//        InputSplit testSplit = filesInDirSplit1[1];
+//        InputSplit validSplit = filesInDirSplit1[2];
+
+
+        File trainData = new File(inputDataDir + "/train");
+        FileSplit trainSplit = new FileSplit(trainData, NativeImageLoader.ALLOWED_FORMATS, randNumGen);
 
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator(); // parent path as the image label
         ImageRecordReader trainRR = new ImageRecordReader(height, width, channels, labelMaker);
@@ -88,16 +92,18 @@ public class WeldingDefectClassification {
         trainIter.setPreProcessor(scaler);
 
 //Testing data Vectorization
+        File testData = new File(inputDataDir + "/test");
+        FileSplit testSplit = new FileSplit(testData, NativeImageLoader.ALLOWED_FORMATS, randNumGen);
         ImageRecordReader testRR = new ImageRecordReader(height, width, channels, labelMaker);
         testRR.initialize(testSplit, cropImageTransform);
         DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, batchSize, 1, outputNum);
         testIter.setPreProcessor(scaler); // same normalization for better results
 
 //Testing data Vectorization
-        ImageRecordReader validRR = new ImageRecordReader(height, width, channels, labelMaker);
-        validRR.initialize(validSplit, cropImageTransform);
-        DataSetIterator validIter = new RecordReaderDataSetIterator(validRR, batchSize, 1, outputNum);
-        validIter.setPreProcessor(scaler); // same normalization for better results
+//        ImageRecordReader validRR = new ImageRecordReader(height, width, channels, labelMaker);
+//        validRR.initialize(validSplit, cropImageTransform);
+//        DataSetIterator validIter = new RecordReaderDataSetIterator(validRR, batchSize, 1, outputNum);
+//        validIter.setPreProcessor(scaler); // same normalization for better results
 
 // NN configuration
         int i =0;
@@ -105,7 +111,7 @@ public class WeldingDefectClassification {
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
 //                .l1(1e-3)
-//                .l2(1e-3)
+                .l2(1e-3)
                 .weightInit(WeightInit.XAVIER)
                 .activation(Activation.RELU)
                 .updater(new Adam(5e-4))
@@ -118,7 +124,7 @@ public class WeldingDefectClassification {
                         .nOut(16)
                         .kernelSize(3,3)
                         .stride(1,1)
-                        .padding(2,2)
+                        //.padding(2,2)
                         .build())
                 .layer(i++,new SubsamplingLayer.Builder()
                         .name("Pooling1")
@@ -129,10 +135,10 @@ public class WeldingDefectClassification {
                 //.layer(i++,new DropoutLayer(0.1))
                 .layer(i++,new ConvolutionLayer.Builder()
                         .name("Conv2")
-                        .nOut(8)
+                        .nOut(16)
                         .kernelSize(3,3)
                         .stride(1,1)
-                        .padding(2,2)
+                        //.padding(2,2)
                         .build())
                 .layer(i++,new SubsamplingLayer.Builder()
                         .name("Pooling2")
@@ -140,10 +146,50 @@ public class WeldingDefectClassification {
                         .kernelSize(3,3)
                         .stride(1,1)
                         .build())
+                .layer(i++,new ConvolutionLayer.Builder()
+                        .name("Conv3")
+                        .nOut(32)
+                        .kernelSize(3,3)
+                        .stride(1,1)
+                        //.padding(2,2)
+                        .build())
+                .layer(i++,new SubsamplingLayer.Builder()
+                        .name("Pooling3")
+                        .poolingType(PoolingType.MAX)
+                        .kernelSize(3,3)
+                        .stride(1,1)
+                        .build())
+                .layer(i++,new ConvolutionLayer.Builder()
+                        .name("Conv4")
+                        .nOut(32)
+                        .kernelSize(3,3)
+                        .stride(1,1)
+                        //.padding(2,2)
+                        .build())
+                //.layer(i++,new DropoutLayer(0.1))
+                .layer(i++,new SubsamplingLayer.Builder()
+                        .name("Pooling4")
+                        .poolingType(PoolingType.MAX)
+                        .kernelSize(3,3)
+                        .stride(1,1)
+                        .build())
                 .layer(i++,new DenseLayer.Builder()
                         .name("dense1")
-                        .nOut(32)
+                        .nOut(32)  //256
                         .weightInit(WeightInit.XAVIER)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(i++,new DenseLayer.Builder()
+                        .name("dense2")
+                        .nOut(32) //128
+                        .weightInit(WeightInit.XAVIER)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(i++,new DenseLayer.Builder()
+                        .name("dense3")
+                        .nOut(32)  //256
+                        .weightInit(WeightInit.XAVIER)
+                        .activation(Activation.RELU)
                         .build())
                 //.layer(i++,new DropoutLayer(0.2))
                 .layer(i++,new OutputLayer.Builder()
@@ -192,10 +238,10 @@ public class WeldingDefectClassification {
         ModelSerializer.writeModel(net, modelPath, true);
         log.info("The MINIST model has been saved in {}", modelPath.getPath());
 
-
-        Evaluation validEva = net.evaluate(validIter);
-        log.info("\n*************************************** VALIDATION EVALUATION ******************************************\n");
-        log.info(validEva.stats());
+//
+//        Evaluation validEva = net.evaluate(validIter);
+//        log.info("\n*************************************** VALIDATION EVALUATION ******************************************\n");
+//        log.info(validEva.stats());
 
     }
 }
