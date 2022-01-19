@@ -193,7 +193,7 @@ public class WeldingDefectClassification {
         log.info("The MINIST model has been saved in {}", modelPath.getPath());
 
 
-        Evaluation validEva = net.evaluate(testIter);
+        Evaluation validEva = net.evaluate(validIter);
         log.info("\n*************************************** TESTING EVALUATION ******************************************\n");
         log.info(validEva.stats());
 
