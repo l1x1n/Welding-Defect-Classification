@@ -8,8 +8,18 @@ import org.datavec.image.loader.NativeImageLoader;
 import org.datavec.image.recordreader.ImageRecordReader;
 import org.datavec.image.transform.CropImageTransform;
 import org.datavec.image.transform.ImageTransform;
+import org.datavec.image.transform.MultiImageTransform;
+import org.datavec.image.transform.ShowImageTransform;
 import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
+import org.deeplearning4j.earlystopping.EarlyStoppingConfiguration;
+import org.deeplearning4j.earlystopping.EarlyStoppingResult;
+import org.deeplearning4j.earlystopping.saver.LocalFileModelSaver;
+import org.deeplearning4j.earlystopping.scorecalc.DataSetLossCalculator;
+import org.deeplearning4j.earlystopping.termination.MaxEpochsTerminationCondition;
+import org.deeplearning4j.earlystopping.termination.MaxTimeIterationTerminationCondition;
+import org.deeplearning4j.earlystopping.termination.ScoreImprovementEpochTerminationCondition;
+import org.deeplearning4j.earlystopping.trainer.EarlyStoppingTrainer;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.ConvolutionMode;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
@@ -23,8 +33,10 @@ import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.model.stats.StatsListener;
 import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
+import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
+import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.DataNormalization;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
@@ -34,67 +46,73 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
-
+import java.util.concurrent.TimeUnit;
+import static org.deeplearning4j.welding_defect_classification.PlotUtil.plotLossGraph;
 public class WeldingDefectClassification {
     private static final Logger log = LoggerFactory.getLogger(WeldingDefectClassification.class);
 
     public static void main(String[] args) throws Exception {
         int n = 10;
-        int height = 400/n;  // 输入图像高度
-        int width = 800/n;   // 输入图像宽度
-        int channels = 1; // 输入图像通道数
-        int outputNum = 6; // 3分类
+        int height = 400/n;  // height of input image
+        int width = 400/n;   // width of output image
+        int channels = 1; // channel
+        int outputNum = 6; // 6 classes
         int batchSize = 64;
-        int nEpochs = 1;
+        int nEpochs = 5;
         int seed = 1234;
         Random randNumGen = new Random(seed);
         String inputDataDir = "D:/al5083";
 
-// 训练数据的向量化
-
-
-        File data = new File(inputDataDir + "/train");
-        FileSplit fileSplit = new FileSplit(data);
+//Training data Vectorization
+        File dataTrain = new File(inputDataDir + "/train");
+        FileSplit fileSplitTrain = new FileSplit(dataTrain);
         //create random path filter using RandomPathFilter
-        RandomPathFilter pathFilter = new RandomPathFilter(randNumGen, NativeImageLoader.ALLOWED_FORMATS);
-
-        InputSplit[] filesInDirSplit = fileSplit.sample(pathFilter, 70, 30);
-        InputSplit trainSplit = filesInDirSplit[0];
-        InputSplit testSplit = filesInDirSplit[1];
-
-//        File trainData = new File(inputDataDir + "/train");
-//        FileSplit trainSplit = new FileSplit(trainData, NativeImageLoader.ALLOWED_FORMATS, randNumGen);
+        RandomPathFilter pathFilter1 = new RandomPathFilter(randNumGen, NativeImageLoader.ALLOWED_FORMATS);
+        InputSplit[] filesInDirSplit1 = fileSplitTrain.sample(pathFilter1, 60,20,20);//40
+        InputSplit trainSplit = filesInDirSplit1[0];
+        InputSplit testSplit = filesInDirSplit1[1];
+        InputSplit validSplit = filesInDirSplit1[2];
 
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator(); // parent path as the image label
         ImageRecordReader trainRR = new ImageRecordReader(height, width, channels, labelMaker);
-        ImageTransform cropImageTransform = new CropImageTransform(420, 0, 0, 0);
-        trainRR.initialize(trainSplit, cropImageTransform);
-        DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, outputNum);
+        ImageTransform cropImageTransform = new CropImageTransform(450, 150, 100, 150);
 
-// 将像素从0-255缩放到0-1 (用min-max的方式进行缩放)
+        trainRR.initialize(trainSplit, cropImageTransform);
+
+        DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, outputNum);
+// normalization of grayscale image from 0-255 to 0-1
         DataNormalization scaler = new ImagePreProcessingScaler(0, 1);
         scaler.fit(trainIter);
         trainIter.setPreProcessor(scaler);
 
-// 测试数据的向量化
-//        File testData = new File(inputDataDir + "/test");
-//        FileSplit testSplit = new FileSplit(testData, NativeImageLoader.ALLOWED_FORMATS, randNumGen);
+//Testing data Vectorization
         ImageRecordReader testRR = new ImageRecordReader(height, width, channels, labelMaker);
         testRR.initialize(testSplit, cropImageTransform);
         DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, batchSize, 1, outputNum);
         testIter.setPreProcessor(scaler); // same normalization for better results
 
-// 设置网络层及超参数
+//Testing data Vectorization
+        ImageRecordReader validRR = new ImageRecordReader(height, width, channels, labelMaker);
+        validRR.initialize(validSplit, cropImageTransform);
+        DataSetIterator validIter = new RecordReaderDataSetIterator(validRR, batchSize, 1, outputNum);
+        validIter.setPreProcessor(scaler); // same normalization for better results
 
+// NN configuration
+        int i =0;
+        int numOfEpochs =10;
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
+//                .l1(1e-3)
+//                .l2(1e-3)
                 .weightInit(WeightInit.XAVIER)
                 .activation(Activation.RELU)
-                .updater(new Adam(5e-5))
+                .updater(new Adam(5e-4))
                 .convolutionMode(ConvolutionMode.Same)
                 .list()
-                .layer(0,new ConvolutionLayer.Builder()
+
+                .layer(i,new ConvolutionLayer.Builder()
                         .name("Conv1")
                         .nIn(channels)
                         .nOut(16)
@@ -102,45 +120,34 @@ public class WeldingDefectClassification {
                         .stride(1,1)
                         .padding(2,2)
                         .build())
-                .layer(1,new SubsamplingLayer.Builder()
+                .layer(i++,new SubsamplingLayer.Builder()
                         .name("Pooling1")
                         .poolingType(PoolingType.MAX)
                         .kernelSize(3,3)
                         .stride(1,1)
                         .build())
-//                .layer(2,new ConvolutionLayer.Builder()
-//                        .name("Conv2")
-//                        .nOut(16)
-//                        .kernelSize(3,3)
-//                        .stride(1,1)
-//                        .padding(2,2)
-//                        .build())
-//                .layer(3,new SubsamplingLayer.Builder()
-//                        .name("Pooling2")
-//                        .poolingType(PoolingType.MAX)
-//                        .kernelSize(3,3)
-//                        .stride(1,1)
-//                        .build())
-//                .layer(4,new ConvolutionLayer.Builder()
-//                        .name("Conv3")
-//                        .nOut(16)
-//                        .kernelSize(3,3)
-//                        .stride(1,1)
-//                        .padding(2,2)
-//                        .build())
-//                .layer(5,new SubsamplingLayer.Builder()
-//                        .name("Pooling3")
-//                        .poolingType(PoolingType.MAX)
-//                        .kernelSize(3,3)
-//                        .stride(1,1)
-//                        .build())
-                .layer(2,new DenseLayer.Builder()
+                //.layer(i++,new DropoutLayer(0.1))
+                .layer(i++,new ConvolutionLayer.Builder()
+                        .name("Conv2")
+                        .nOut(8)
+                        .kernelSize(3,3)
+                        .stride(1,1)
+                        .padding(2,2)
+                        .build())
+                .layer(i++,new SubsamplingLayer.Builder()
+                        .name("Pooling2")
+                        .poolingType(PoolingType.MAX)
+                        .kernelSize(3,3)
+                        .stride(1,1)
+                        .build())
+                .layer(i++,new DenseLayer.Builder()
                         .name("dense1")
-                        .nOut(64)
+                        .nOut(32)
                         .weightInit(WeightInit.XAVIER)
                         .build())
-                .layer(3,new OutputLayer.Builder()
-                        .name("output")
+                //.layer(i++,new DropoutLayer(0.2))
+                .layer(i++,new OutputLayer.Builder()
+                        .name("output6")
                         .nOut(outputNum)
                         .weightInit(WeightInit.XAVIER)
                         .lossFunction(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
@@ -149,7 +156,7 @@ public class WeldingDefectClassification {
                 .setInputType(InputType.convolutional(height,width,channels))
                 .build();
 
-        // 新建一个多层网络模型
+        // build multi layer NN
         log.info("Train model...");
         MultiLayerNetwork net = new MultiLayerNetwork(conf);
         net.init();
@@ -162,6 +169,8 @@ public class WeldingDefectClassification {
         StatsStorage statsStorage = new InMemoryStatsStorage();
         uiServer.attach(statsStorage);
         net.setListeners(new ScoreIterationListener(1), new StatsListener(statsStorage));
+
+
 
         log.info("\n*************************************** MODEL SUMMARY ******************************************\n");
         log.info(net.summary());
@@ -178,6 +187,15 @@ public class WeldingDefectClassification {
         Evaluation testEva = net.evaluate(testIter);
         log.info("\n*************************************** TESTING EVALUATION ******************************************\n");
         log.info(testEva.stats());
+
+        File modelPath = new File(inputDataDir + "/model.zip");
+        ModelSerializer.writeModel(net, modelPath, true);
+        log.info("The MINIST model has been saved in {}", modelPath.getPath());
+
+
+        Evaluation validEva = net.evaluate(testIter);
+        log.info("\n*************************************** TESTING EVALUATION ******************************************\n");
+        log.info(validEva.stats());
 
     }
 }

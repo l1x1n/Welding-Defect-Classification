@@ -13,12 +13,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PreparingDataset {
-//    static final String trainPath = "D:/al5083/train"; // the parent directory of training data
-//    static final String testPath = "D:/al5083/test"; // the parent directory of testing data
-//    public static void main(String[] args) {
-//        PreparingDataset(trainPath,true);
-//        PreparingDataset(testPath,false);
-//    }
+    static final String trainPath = "D:/al5083/train"; // the parent directory of training data
+    static final String testPath = "D:/al5083/test"; // the parent directory of testing data
+    public static void main(String[] args) {
+        Preparing(trainPath,true);
+        Preparing(testPath,false);
+    }
     public static void DeleteFolder(){
 
     }
