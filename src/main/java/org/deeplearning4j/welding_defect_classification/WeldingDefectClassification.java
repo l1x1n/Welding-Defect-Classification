@@ -58,22 +58,22 @@ public class WeldingDefectClassification {
         int height = 400/n;  // height of input image
         int width = 400/n;   // width of output image
         int channels = 1; // channel
-        int outputNum = 6; // 6 classes
+        int outputNum = 4; // 6 classes
         int batchSize = 64;
-        int nEpochs = 6;
+        int nEpochs = 4;
         int seed = 1234;
         Random randNumGen = new Random(seed);
-        String inputDataDir = "D:/al5083";
+        String inputDataDir = "D:/al5083/2";
 
 //Training data Vectorization
 //        File dataTrain = new File(inputDataDir + "/train");
 //        FileSplit fileSplitTrain = new FileSplit(dataTrain);
-        //create random path filter using RandomPathFilter
+////        create random path filter using RandomPathFilter
 //        RandomPathFilter pathFilter1 = new RandomPathFilter(randNumGen, NativeImageLoader.ALLOWED_FORMATS);
-//        InputSplit[] filesInDirSplit1 = fileSplitTrain.sample(pathFilter1, 60,20,20);//40
+//        InputSplit[] filesInDirSplit1 = fileSplitTrain.sample(pathFilter1, 50,50);//40
 //        InputSplit trainSplit = filesInDirSplit1[0];
-//        InputSplit testSplit = filesInDirSplit1[1];
-//        InputSplit validSplit = filesInDirSplit1[2];
+////        InputSplit testSplit = filesInDirSplit1[1];
+////        InputSplit validSplit = filesInDirSplit1[2];
 
 
         File trainData = new File(inputDataDir + "/train");
@@ -111,20 +111,20 @@ public class WeldingDefectClassification {
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
 //                .l1(1e-3)
-                .l2(1e-3)
+                .l2(1e-4)
                 .weightInit(WeightInit.XAVIER)
                 .activation(Activation.RELU)
-                .updater(new Adam(5e-4))
+                .updater(new Adam(5e-4))//5e-4
                 .convolutionMode(ConvolutionMode.Same)
                 .list()
 
                 .layer(new ConvolutionLayer.Builder()
                         .name("Conv1")
                         .nIn(channels)
-                        .nOut(16)
+                        .nOut(16) //16
                         .kernelSize(3,3)
                         .stride(1,1)
-                        //.padding(2,2)
+                        .padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling1")
@@ -132,13 +132,12 @@ public class WeldingDefectClassification {
                         .kernelSize(3,3)
                         .stride(1,1)
                         .build())
-                //.layer(i++,new DropoutLayer(0.1))
                 .layer(new ConvolutionLayer.Builder()
                         .name("Conv2")
-                        .nOut(16)
+                        .nOut(16)  //16
                         .kernelSize(3,3)
                         .stride(1,1)
-                        //.padding(2,2)
+                        .padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling2")
@@ -148,10 +147,10 @@ public class WeldingDefectClassification {
                         .build())
                 .layer(new ConvolutionLayer.Builder()
                         .name("Conv3")
-                        .nOut(32)
+                        .nOut(32) //32
                         .kernelSize(3,3)
                         .stride(1,1)
-                        //.padding(2,2)
+                        .padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling3")
@@ -159,38 +158,39 @@ public class WeldingDefectClassification {
                         .kernelSize(3,3)
                         .stride(1,1)
                         .build())
-                .layer(new ConvolutionLayer.Builder()
-                        .name("Conv4")
-                        .nOut(32)
-                        .kernelSize(3,3)
-                        .stride(1,1)
-                        //.padding(2,2)
-                        .build())
-                //.layer(i++,new DropoutLayer(0.1))
-                .layer(new SubsamplingLayer.Builder()
-                        .name("Pooling4")
-                        .poolingType(PoolingType.MAX)
-                        .kernelSize(3,3)
-                        .stride(1,1)
-                        .build())
+//                .layer(new ConvolutionLayer.Builder()
+//                        .name("Conv4")
+//                        .nOut(32)  //32
+//                        .kernelSize(3,3)
+//                        .stride(1,1)
+//                        //.padding(2,2)
+//                        .build())
+//                //.layer(i++,new DropoutLayer(0.1))
+//                .layer(new SubsamplingLayer.Builder()
+//                        .name("Pooling4")
+//                        .poolingType(PoolingType.MAX)
+//                        .kernelSize(3,3)
+//                        .stride(1,1)
+//                        .build())
+                //.layer(new DropoutLayer(0.1))
                 .layer(new DenseLayer.Builder()
                         .name("dense1")
-                        .nOut(32)  //256
+                        .nOut(32)  //32
                         .weightInit(WeightInit.XAVIER)
                         .activation(Activation.RELU)
                         .build())
                 .layer(new DenseLayer.Builder()
                         .name("dense2")
-                        .nOut(32) //128
+                        .nOut(32) //32
                         .weightInit(WeightInit.XAVIER)
                         .activation(Activation.RELU)
                         .build())
-                .layer(new DenseLayer.Builder()
-                        .name("dense3")
-                        .nOut(32)  //256
-                        .weightInit(WeightInit.XAVIER)
-                        .activation(Activation.RELU)
-                        .build())
+//                .layer(new DenseLayer.Builder()
+//                        .name("dense3")
+//                        .nOut(32)  //32
+//                        .weightInit(WeightInit.XAVIER)
+//                        .activation(Activation.RELU)
+//                        .build())
                 //.layer(i++,new DropoutLayer(0.2))
                 .layer(new OutputLayer.Builder()
                         .name("output6")
