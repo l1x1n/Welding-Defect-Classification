@@ -58,8 +58,8 @@ public class WeldingDefectClassification {
         int width = 40;   // width of output image
         int channels = 1; // channel
         int outputNum = 4; // 4 classes
-        int batchSize = 64;
-        int nEpochs = 4;
+        int batchSize = 32;
+        int nEpochs = 3;
         int seed = 1234;
         Random randNumGen = new Random(seed);
         String inputDataDir = "D:/al5083/2";
@@ -93,7 +93,7 @@ public class WeldingDefectClassification {
         int numOfEpochs =10;
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
-//                .l2(1e-4)
+                .l2(1e-4)
                 .weightInit(WeightInit.XAVIER)
                 .activation(Activation.RELU)
                 .updater(new Adam(5e-4))//5e-4
@@ -106,12 +106,12 @@ public class WeldingDefectClassification {
                         .nOut(16) //16
                         .kernelSize(3,3)
                         .stride(1,1)
-                        .padding(2,2)
+                        //.padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling1")
                         .poolingType(PoolingType.MAX)
-                        .kernelSize(3,3)
+                        .kernelSize(2,2)
                         .stride(1,1)
                         .build())
                 .layer(new ConvolutionLayer.Builder()
@@ -119,12 +119,12 @@ public class WeldingDefectClassification {
                         .nOut(16)  //16
                         .kernelSize(3,3)
                         .stride(1,1)
-                        .padding(2,2)
+                        //.padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling2")
                         .poolingType(PoolingType.MAX)
-                        .kernelSize(3,3)
+                        .kernelSize(2,2)
                         .stride(1,1)
                         .build())
                 .layer(new ConvolutionLayer.Builder()
@@ -132,12 +132,12 @@ public class WeldingDefectClassification {
                         .nOut(32) //32
                         .kernelSize(3,3)
                         .stride(1,1)
-                        .padding(2,2)
+                        //.padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling3")
                         .poolingType(PoolingType.MAX)
-                        .kernelSize(3,3)
+                        .kernelSize(2,2)
                         .stride(1,1)
                         .build())
                 .layer(new DenseLayer.Builder()

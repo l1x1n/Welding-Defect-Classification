@@ -16,13 +16,11 @@ public class PreparingDataset {
     static final String trainPath = "D:/al5083/train"; // the parent directory of training data
     static final String testPath = "D:/al5083/test"; // the parent directory of testing data
     public static void main(String[] args) {
-        Preparing(trainPath,true);
-        Preparing(testPath,false);
+        Loading(trainPath,true);
+        Loading(testPath,false);
     }
-    public static void DeleteFolder(){
 
-    }
-    public static void Preparing(String path,boolean train){
+    public static void Loading(String path,boolean train){ //loading raw dataset
         String fileName;
         if (new File(path).exists()){
             System.out.println("Path exists.");
