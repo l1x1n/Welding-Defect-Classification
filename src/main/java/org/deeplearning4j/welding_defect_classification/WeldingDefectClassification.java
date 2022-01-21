@@ -54,26 +54,15 @@ public class WeldingDefectClassification {
     private static final Logger log = LoggerFactory.getLogger(WeldingDefectClassification.class);
 
     public static void main(String[] args) throws Exception {
-        int n = 10;
-        int height = 400/n;  // height of input image
-        int width = 400/n;   // width of output image
+        int height = 40;  // height of input image
+        int width = 40;   // width of output image
         int channels = 1; // channel
-        int outputNum = 4; // 6 classes
+        int outputNum = 4; // 4 classes
         int batchSize = 64;
         int nEpochs = 4;
         int seed = 1234;
         Random randNumGen = new Random(seed);
         String inputDataDir = "D:/al5083/2";
-
-//Training data Vectorization
-//        File dataTrain = new File(inputDataDir + "/train");
-//        FileSplit fileSplitTrain = new FileSplit(dataTrain);
-////        create random path filter using RandomPathFilter
-//        RandomPathFilter pathFilter1 = new RandomPathFilter(randNumGen, NativeImageLoader.ALLOWED_FORMATS);
-//        InputSplit[] filesInDirSplit1 = fileSplitTrain.sample(pathFilter1, 50,50);//40
-//        InputSplit trainSplit = filesInDirSplit1[0];
-////        InputSplit testSplit = filesInDirSplit1[1];
-////        InputSplit validSplit = filesInDirSplit1[2];
 
 
         File trainData = new File(inputDataDir + "/train");
@@ -99,19 +88,12 @@ public class WeldingDefectClassification {
         DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, batchSize, 1, outputNum);
         testIter.setPreProcessor(scaler); // same normalization for better results
 
-//Testing data Vectorization
-//        ImageRecordReader validRR = new ImageRecordReader(height, width, channels, labelMaker);
-//        validRR.initialize(validSplit, cropImageTransform);
-//        DataSetIterator validIter = new RecordReaderDataSetIterator(validRR, batchSize, 1, outputNum);
-//        validIter.setPreProcessor(scaler); // same normalization for better results
-
 // NN configuration
         int i =0;
         int numOfEpochs =10;
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
-//                .l1(1e-3)
-                .l2(1e-4)
+//                .l2(1e-4)
                 .weightInit(WeightInit.XAVIER)
                 .activation(Activation.RELU)
                 .updater(new Adam(5e-4))//5e-4
@@ -158,21 +140,6 @@ public class WeldingDefectClassification {
                         .kernelSize(3,3)
                         .stride(1,1)
                         .build())
-//                .layer(new ConvolutionLayer.Builder()
-//                        .name("Conv4")
-//                        .nOut(32)  //32
-//                        .kernelSize(3,3)
-//                        .stride(1,1)
-//                        //.padding(2,2)
-//                        .build())
-//                //.layer(i++,new DropoutLayer(0.1))
-//                .layer(new SubsamplingLayer.Builder()
-//                        .name("Pooling4")
-//                        .poolingType(PoolingType.MAX)
-//                        .kernelSize(3,3)
-//                        .stride(1,1)
-//                        .build())
-                //.layer(new DropoutLayer(0.1))
                 .layer(new DenseLayer.Builder()
                         .name("dense1")
                         .nOut(32)  //32
@@ -185,13 +152,6 @@ public class WeldingDefectClassification {
                         .weightInit(WeightInit.XAVIER)
                         .activation(Activation.RELU)
                         .build())
-//                .layer(new DenseLayer.Builder()
-//                        .name("dense3")
-//                        .nOut(32)  //32
-//                        .weightInit(WeightInit.XAVIER)
-//                        .activation(Activation.RELU)
-//                        .build())
-                //.layer(i++,new DropoutLayer(0.2))
                 .layer(new OutputLayer.Builder()
                         .name("output6")
                         .nOut(outputNum)
@@ -237,11 +197,6 @@ public class WeldingDefectClassification {
         File modelPath = new File(inputDataDir + "/model.zip");
         ModelSerializer.writeModel(net, modelPath, true);
         log.info("The MINIST model has been saved in {}", modelPath.getPath());
-
-//
-//        Evaluation validEva = net.evaluate(validIter);
-//        log.info("\n*************************************** VALIDATION EVALUATION ******************************************\n");
-//        log.info(validEva.stats());
 
     }
 }
