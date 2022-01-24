@@ -11,7 +11,9 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+//Read the label text file
+//Split path, file name and labels
+//Move images into the folder depending on the label for label generating.
 public class PreparingDataset {
     static final String trainPath = "D:/al5083/train"; // the parent directory of training data
     static final String testPath = "D:/al5083/test"; // the parent directory of testing data

@@ -1,30 +1,16 @@
 package org.deeplearning4j.welding_defect_classification;
 
-import org.datavec.api.io.filters.RandomPathFilter;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;
-import org.datavec.api.split.InputSplit;
 import org.datavec.image.loader.NativeImageLoader;
 import org.datavec.image.recordreader.ImageRecordReader;
 import org.datavec.image.transform.CropImageTransform;
 import org.datavec.image.transform.ImageTransform;
-import org.datavec.image.transform.MultiImageTransform;
-import org.datavec.image.transform.ShowImageTransform;
 import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
-import org.deeplearning4j.earlystopping.EarlyStoppingConfiguration;
-import org.deeplearning4j.earlystopping.EarlyStoppingResult;
-import org.deeplearning4j.earlystopping.saver.LocalFileModelSaver;
-import org.deeplearning4j.earlystopping.scorecalc.DataSetLossCalculator;
-import org.deeplearning4j.earlystopping.termination.MaxEpochsTerminationCondition;
-import org.deeplearning4j.earlystopping.termination.MaxTimeIterationTerminationCondition;
-import org.deeplearning4j.earlystopping.termination.ScoreImprovementEpochTerminationCondition;
-import org.deeplearning4j.earlystopping.trainer.EarlyStoppingTrainer;
-import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.ConvolutionMode;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
-import org.deeplearning4j.nn.conf.Updater;
 import org.deeplearning4j.nn.conf.inputs.InputType;
 import org.deeplearning4j.nn.conf.layers.*;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
@@ -36,7 +22,6 @@ import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
-import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.DataNormalization;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
@@ -44,12 +29,9 @@ import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-import static org.deeplearning4j.welding_defect_classification.PlotUtil.plotLossGraph;
+
 public class WeldingDefectClassification {
     private static final Logger log = LoggerFactory.getLogger(WeldingDefectClassification.class);
 
@@ -65,19 +47,20 @@ public class WeldingDefectClassification {
         String inputDataDir = "D:/al5083/2";
 
 
-        File trainData = new File(inputDataDir + "/train");
+        File trainData = new File(inputDataDir + "/train"); // loading images
         FileSplit trainSplit = new FileSplit(trainData, NativeImageLoader.ALLOWED_FORMATS, randNumGen);
 
-        ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator(); // parent path as the image label
+        ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator(); // generate labels. parent path as the image label
         ImageRecordReader trainRR = new ImageRecordReader(height, width, channels, labelMaker);
         ImageTransform cropImageTransform = new CropImageTransform(450, 150, 100, 150);
 
         trainRR.initialize(trainSplit, cropImageTransform);
 
         DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, outputNum);
+
 // normalization of grayscale image from 0-255 to 0-1
         DataNormalization scaler = new ImagePreProcessingScaler(0, 1);
-        scaler.fit(trainIter);
+        scaler.fit(trainIter); //normalize images
         trainIter.setPreProcessor(scaler);
 
 //Testing data Vectorization
@@ -89,9 +72,7 @@ public class WeldingDefectClassification {
         testIter.setPreProcessor(scaler); // same normalization for better results
 
 // NN configuration
-        int i =0;
-        int numOfEpochs =10;
-        MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
+        MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder() // create a NN
                 .seed(seed)
                 .l2(1e-4)
                 .weightInit(WeightInit.XAVIER)
@@ -99,14 +80,12 @@ public class WeldingDefectClassification {
                 .updater(new Adam(5e-4))//5e-4
                 .convolutionMode(ConvolutionMode.Same)
                 .list()
-
                 .layer(new ConvolutionLayer.Builder()
                         .name("Conv1")
                         .nIn(channels)
                         .nOut(16) //16
                         .kernelSize(3,3)
                         .stride(1,1)
-                        //.padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling1")
@@ -119,7 +98,6 @@ public class WeldingDefectClassification {
                         .nOut(16)  //16
                         .kernelSize(3,3)
                         .stride(1,1)
-                        //.padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling2")
@@ -132,7 +110,6 @@ public class WeldingDefectClassification {
                         .nOut(32) //32
                         .kernelSize(3,3)
                         .stride(1,1)
-                        //.padding(2,2)
                         .build())
                 .layer(new SubsamplingLayer.Builder()
                         .name("Pooling3")
@@ -169,8 +146,7 @@ public class WeldingDefectClassification {
 
 
         log.info("\n****************************************** UI SERVER *********************************************\n");
-        //Setting up DL4J’s tuning user interface
-        //Use user interface to visualize in the browser
+        //Setting up DL4J’s tuning user interface. Use user interface to visualize in the browser
         UIServer uiServer = UIServer.getInstance();
         StatsStorage statsStorage = new InMemoryStatsStorage();
         uiServer.attach(statsStorage);
@@ -194,7 +170,7 @@ public class WeldingDefectClassification {
         log.info("\n*************************************** TESTING EVALUATION ******************************************\n");
         log.info(testEva.stats());
 
-        File modelPath = new File(inputDataDir + "/model.zip");
+        File modelPath = new File(inputDataDir + "/model.zip"); // save the model for deployment
         ModelSerializer.writeModel(net, modelPath, true);
         log.info("The MINIST model has been saved in {}", modelPath.getPath());
 
