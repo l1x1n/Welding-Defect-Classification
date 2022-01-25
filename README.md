@@ -1,6 +1,6 @@
 # Welding-Defect-Identifier
 
-+ Automated defect classification of AL5083 TIG welding process by using DL4J.  
++ Automatic defect identifier for AL5083 TIG welding using DL4J..  
 + CS-Serve: https://app.creatorsuite.ai/dashboard/f0a9d850-7a83-11ec-b1b5-4b0dfa009355?publicId=672940d0-67ae-11ec-81a4-bf4afac2153e 
 + Test images for CS-Serve: https://drive.google.com/drive/u/1/folders/18c7U73ojAionrAv7sR32_epuzTlywe3u
 + Dataset used in this project:https://drive.google.com/file/d/1N5toXKIME3akUEzumSi9mUTC9Xw5pTyW/view?usp=sharing
